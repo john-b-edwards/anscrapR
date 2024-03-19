@@ -3,7 +3,7 @@ Type: Package
 Title: Action Network Scraper
 Version: 0.1.0
 Author: John Edwards
-Maintainer: John Edwards (edwards1860@gmail.com)
+Maintainer: John Edwards
 Description: Scrape sports betting information (lines, spreads, totals, etc.) from the Action Network API.
 License: MIT + file LICENSE
 Encoding: UTF-8
