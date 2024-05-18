@@ -23,6 +23,8 @@ just 1 for the postseason.}
 \item{season}{The season to obtain data from.}
 
 \item{division}{One of "FBS","FCS", or "D2".}
+
+\item{period}{One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", or "fourthquarter". Defaults to "event".}
 }
 \value{
 a dataframe of odds from the Action Network.

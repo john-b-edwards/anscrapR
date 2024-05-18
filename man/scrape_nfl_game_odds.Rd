@@ -14,6 +14,8 @@ from 0-18 for the regular season, and from 0-5 for the postseason.}
 "pre", "reg", or "post".}
 
 \item{season}{The season to obtain data from.}
+
+\item{period}{One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", or "fourthquarter". Defaults to "event".}
 }
 \value{
 a dataframe of odds from the Action Network.

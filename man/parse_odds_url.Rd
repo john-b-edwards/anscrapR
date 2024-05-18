@@ -7,8 +7,11 @@
 parse_odds_url(url)
 }
 \arguments{
-\item{url}{}
+\item{url}{A URL reference to the odds endpoint of the Action Network API.}
+}
+\value{
+The odds data for the game, returned in rectangular format.
 }
 \description{
-parse_odds_url
+A helper function to generically parse data returned from the Action Network odds API.
 }

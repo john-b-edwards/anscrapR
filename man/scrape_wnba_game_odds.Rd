@@ -7,8 +7,13 @@
 scrape_wnba_game_odds(date = Sys.Date(), period = "event")
 }
 \arguments{
-\item{period}{}
+\item{date}{The date to obtain odds for. Defaults to the current day.}
+
+\item{period}{One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", "fourthquarter". Defaults to "event".}
+}
+\value{
+A dataframe of odds for WNBA games on the specified date.
 }
 \description{
-scrape_wnba_game_odds
+Return the odds for a given period for all games on a specified date for WNBA games from the Action Network.
 }

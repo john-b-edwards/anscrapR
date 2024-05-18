@@ -1,10 +1,9 @@
 #' parse_odds_url
 #'
-#' @param url
+#' @description A helper function to generically parse data returned from the Action Network odds API.
+#' @param url A URL reference to the odds endpoint of the Action Network API.
 #'
-#' @return
-#'
-#' @examples
+#' @return The odds data for the game, returned in rectangular format.
 parse_odds_url <- function(url) {
   odds_json <- httr::RETRY("GET", url = url, httr::add_headers(
     .headers = c(`user-agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0')
@@ -143,10 +142,8 @@ parse_odds_url <- function(url) {
 #' "reg", or "post".
 #' @param season The season to obtain data from.
 #' @param division One of "FBS","FCS", or "D2".
+#' @param period One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", or "fourthquarter". Defaults to "event".
 #' @return a dataframe of odds from the Action Network.
-
-# periods = event, firsthalf, secondhalf, firstquarter # etc
-# some periods stuff doesn't seem to work?
 scrape_cfb_game_odds <-
   function(week, season_type, season, division = "FBS", period = "event") {
     stopifnot(season >= 2017)
@@ -167,9 +164,8 @@ scrape_cfb_game_odds <-
 #' @param season_type The type of season to obtain data for. Must be one of
 #' "pre", "reg", or "post".
 #' @param season The season to obtain data from.
+#' @param period One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", or "fourthquarter". Defaults to "event".
 #' @return a dataframe of odds from the Action Network.
-
-# periods = event, firsthalf, secondhalf, firstquarter # etc
 scrape_nfl_game_odds <- function(week, season_type, season,
                                  period = "event") {
   stopifnot(season >= 2017)
@@ -185,14 +181,14 @@ scrape_nfl_game_odds <- function(week, season_type, season,
 
 #' scrape_ncaab_game_odds
 #'
-#' @param date
-#' @param period
+#' @description
+#' Return the odds for a given period for all games on a specified date for NCAA men's basketball games from the Action Network.
 #'
-#' @return
+#' @param date The date to obtain odds for. Defaults to the current day.
+#' @param period One of "event", "firsthalf", "secondhalf". Defaults to "event".
+#'
+#' @return A dataframe of odds for men's NCAA basketball games on the specified date.
 #' @export
-#'
-#' @examples
-# periods = event, firsthalf, secondhalf
 scrape_ncaab_game_odds <- function(date = Sys.Date(),
                                    period = "event") {
   games <- glue::glue(
@@ -204,16 +200,16 @@ scrape_ncaab_game_odds <- function(date = Sys.Date(),
 
 }
 
-# periods = event, firstperiod, etc.
 #' scrape_nhl_game_odds
 #'
-#' @param date
-#' @param period
+#' @description
+#' Return the odds for a given period for all games on a specified date for NHL games from the Action Network.
 #'
-#' @return
+#' @param date The date to obtain odds for. Defaults to the current day.
+#' @param period One of "event", "firstperiod", "secondperiod", "thirdperiod". Defaults to "event".
+#'
+#' @return A dataframe of odds for NHL games on the specified date.
 #' @export
-#'
-#' @examples
 scrape_nhl_game_odds <- function(date = Sys.Date(),
                                  period = "event") {
   games <- glue::glue(
@@ -225,16 +221,16 @@ scrape_nhl_game_odds <- function(date = Sys.Date(),
 
 }
 
-# periods = event, firsthalf, secondhalf, firstquarter # etc.
 #' scrape_nba_game_odds
 #'
-#' @param date
-#' @param period
+#' @description
+#' Return the odds for a given period for all games on a specified date for NBA games from the Action Network.
 #'
-#' @return
+#' @param date The date to obtain odds for. Defaults to the current day.
+#' @param period One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", "fourthquarter". Defaults to "event".
+#'
+#' @return A dataframe of odds for NBA games on the specified date.
 #' @export
-#'
-#' @examples
 scrape_nba_game_odds <- function(date = Sys.Date(),
                                  period = "event") {
   games <- glue::glue(
@@ -246,16 +242,16 @@ scrape_nba_game_odds <- function(date = Sys.Date(),
 
 }
 
-# period = event, firsthalf, secondhalf, firstquarter # etc.
 #' scrape_wnba_game_odds
 #'
-#' @param date
-#' @param period
+#' @description
+#' Return the odds for a given period for all games on a specified date for WNBA games from the Action Network.
 #'
-#' @return
+#' @param date The date to obtain odds for. Defaults to the current day.
+#' @param period One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", "fourthquarter". Defaults to "event".
+#'
+#' @return A dataframe of odds for WNBA games on the specified date.
 #' @export
-#'
-#' @examples
 scrape_wnba_game_odds <- function(date = Sys.Date(),
                                   period = "event") {
   games <- glue::glue(
@@ -267,16 +263,18 @@ scrape_wnba_game_odds <- function(date = Sys.Date(),
 
 }
 
-# periods = event, firsthalf, secondhalf, firstquarter # etc.
 #' scrape_wncaab_game_odds
 #'
-#' @param date
+#' @description
+#' Return the odds for a given period for all games on a specified date for NCAAB women's games from the Action Network.
 #'
-#' @return
+#' @param date The date to obtain odds for. Defaults to the current day.
+#' @param period One of "event", "firsthalf", "secondhalf", "firstquarter", "secondquarter", "thirdquarter", "fourthquarter". Defaults to "event".
+#'
+#' @return A dataframe of odds for NCAAB women's games on the specified date.
 #' @export
-#'
-#' @examples
-scrape_wncaab_game_odds <- function(date = Sys.Date()) {
+scrape_wncaab_game_odds <- function(date = Sys.Date(),
+                                    period = "event") {
   games <- glue::glue(
     "https://api.actionnetwork.com/web/v2/scoreboard/ncaaw?division=D1&date={gsub('-','',date)}&tournament=0&periods={event}"
   ) |>
@@ -286,16 +284,16 @@ scrape_wncaab_game_odds <- function(date = Sys.Date()) {
 
 }
 
-# periods = event, firstinning, firstfiveinnings
 #' scrape_mlb_game_odds
 #'
-#' @param date
-#' @param period
+#' @description
+#' Return the odds for a given period for all games on a specified date for MLB games from the Action Network.
 #'
-#' @return
+#' @param date The date to obtain odds for. Defaults to the current day.
+#' @param period One of "event", "firstinning", "firstfiveinnings". Defaults to "event".
+#'
+#' @return A dataframe of odds for MLB games on the specified date.
 #' @export
-#'
-#' @examples
 scrape_mlb_game_odds <- function(date = Sys.Date(),
                                  period = "event") {
   games <- glue::glue(
@@ -307,16 +305,16 @@ scrape_mlb_game_odds <- function(date = Sys.Date(),
 
 }
 
-# period = event, firsthalf, secondhalf
 #' scrape_soccer_game_odds
 #'
-#' @param date
-#' @param period
+#' @description
+#' Return the odds for a given period for all games on a specified date for soccer games from the Action Network.
 #'
-#' @return
+#' @param date The date to obtain odds for. Defaults to the current day.
+#' @param period One of "event", "firsthalf", "secondhalf". Defaults to "event".
+#'
+#' @return A dataframe of odds for soccer games on the specified date.
 #' @export
-#'
-#' @examples
 scrape_soccer_game_odds <- function(date = Sys.Date(),
                                     period = "event") {
   games <- glue::glue(

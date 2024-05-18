@@ -7,8 +7,13 @@
 scrape_mlb_game_odds(date = Sys.Date(), period = "event")
 }
 \arguments{
-\item{period}{}
+\item{date}{The date to obtain odds for. Defaults to the current day.}
+
+\item{period}{One of "event", "firstinning", "firstfiveinnings". Defaults to "event".}
+}
+\value{
+A dataframe of odds for MLB games on the specified date.
 }
 \description{
-scrape_mlb_game_odds
+Return the odds for a given period for all games on a specified date for MLB games from the Action Network.
 }
