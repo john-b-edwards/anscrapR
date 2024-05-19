@@ -45,16 +45,18 @@ anscrapR::scrape_nfl_game_odds(week = 1, season_type = "reg", season = 2018)
 
 Limited functionality is built out for NFL, NBA, CFB, and NCAAMB games. Additional work can be done to build out the ability to pull lines for the following sports:
 
-* MLB
-* NHL
+* ~~MLB~~
+* ~~NHL~~
 * Boxing
 * Motor Sports
 * Tennis
 * Golf
 * UFC
 * Horse Racing
-* Soccer
-* WNBA
+* ~~Soccer~~
+* ~~WNBA~~
 * Others
 
 Additionally, there are likely other aspects of the Action Network API that have yet to be explored beyond the functionality seen here. Further exploration could prove useful in finding additional endpoints that could be scraped by functions included in anscrapR.
+
+Update 5/18/2024: MLB, NHL, Soccer, and WNBA functionality has been added to the package. Additionally, the package has been updated to work with the V2 API instead of the V1.
